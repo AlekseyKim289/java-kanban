@@ -1,3 +1,11 @@
+package com.yandex.app;
+
+import com.yandex.app.model.Epic;
+import com.yandex.app.model.Subtask;
+import com.yandex.app.model.Task;
+import com.yandex.app.model.Status;
+import com.yandex.app.service.TaskManager;
+
 public class Main {
     public static void main(String[] args) {
         TaskManager manager = new TaskManager();
@@ -6,11 +14,11 @@ public class Main {
         Task task1 = manager.createTask(new Task(0, "task 1", "description 1", Status.NEW));
         Task task2 = manager.createTask(new Task(0, "tas 2", "description 2", Status.IN_PROGRESS));
 
-        Epic epic1 = manager.createEpic(new Epic(0, "Epic 1", "description Epic 1"));
+        Epic epic1 = manager.createEpic(new Epic(0, "com.yandex.app.model.Epic 1", "description com.yandex.app.model.Epic 1"));
         Subtask subtask1 = manager.createSubtask(new Subtask(0, "task 1", "description subtask 1", Status.NEW, epic1.getId()));
         Subtask subtask2 = manager.createSubtask(new Subtask(0, "task 2", "description subtask 2", Status.IN_PROGRESS, epic1.getId()));
 
-        Epic epic2 = manager.createEpic(new Epic(0, "Epic 2", "description Epic 2"));
+        Epic epic2 = manager.createEpic(new Epic(0, "com.yandex.app.model.Epic 2", "description com.yandex.app.model.Epic 2"));
         Subtask subtask3 = manager.createSubtask(new Subtask(0, "subtask 3", "description subtask 3", Status.DONE, epic2.getId()));
 
         System.out.println("all tasks: " + manager.getAllTasks());

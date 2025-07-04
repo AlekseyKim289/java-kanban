@@ -1,3 +1,10 @@
+package com.yandex.app.service;
+
+import com.yandex.app.model.Epic;
+import com.yandex.app.model.Status;
+import com.yandex.app.model.Subtask;
+import com.yandex.app.model.Task;
+
 import java.util.*;
 
 public class TaskManager {
@@ -36,9 +43,7 @@ public class TaskManager {
     }
 
     public void updateTask(Task task) {
-        if (tasks.containsKey(task.getId())) {
-            tasks.put(task.getId(), task);
-        }
+        tasks.computeIfPresent(task.getId(), (id, oldTask) -> task);
     }
 
     public void updateEpic(Epic epic) {
@@ -46,7 +51,7 @@ public class TaskManager {
             Epic existingEpic = epics.get(epic.getId());
             existingEpic.setName(epic.getName());
             existingEpic.setDescription(epic.getDescription());
-            updateEpicStatus(epic.getId());
+
         }
     }
 
